@@ -1,0 +1,26 @@
+<div class="main-container">
+  <header class="header-1">
+    <div class="branding">
+      Tesla UI
+    </div>
+  </header>
+  <nav class="subnav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/state">Current state</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/location">Location</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/commands">Commands</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
