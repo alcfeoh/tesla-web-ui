@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {CurrentStateComponent} from './current-state/current-state.component';
 import {LocationComponent} from './location/location.component';
 import {CommandsComponent} from './commands/commands.component';
+import {LoginGuard} from './login.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [LoginGuard],
     children: [
       {path: 'state', component: CurrentStateComponent},
       {path: 'location', component: LocationComponent},

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {ClimateState, DriveState, GuiSettings, LoginResponse, VehicleInfo} from './responses';
+import {tap} from 'rxjs/internal/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeslaDataService {
 
-  constructor() { }
+  token: string;
 
+  constructor() { }
 
   login(username: string, password: string): Observable<LoginResponse> {
     // POST to /token: {
@@ -20,7 +22,13 @@ export class TeslaDataService {
         'expires_in': 3888000,
         'refresh_token': '4c2f03bc74c575324a0d15edb2e949f38c7c8e602b0264ea17be08a9b51b0dab',
         'created_at': 1538267516
-      });
+      }).pipe(
+        tap(resp => this.token = resp.access_token)
+      );
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.token ? true : false;
   }
 
   getVehicles(): Observable<VehicleInfo[]> {
